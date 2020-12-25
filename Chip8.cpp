@@ -24,6 +24,9 @@ void Chip8::loadRom(char const* fileName) {
         file.read(buffer, size);
         file.close();
 
-        
+        // Load the ROM contes into the Chip8's memory. Starting at the [START_ADDRESS].
+        for (long i = 0; i < size; i++) {
+            memory[START_ADDRESS + i] = buffer[i];
+        }
     }
 }
