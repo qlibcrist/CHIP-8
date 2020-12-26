@@ -2,6 +2,8 @@
 #define UNTITLED_CHIP8_H
 
 #include <cstdint>
+#include <chrono>
+#include <random>
 
 class Chip8 {
 
@@ -22,8 +24,12 @@ public:
     uint32_t video[16 * 32]{};
     uint16_t opcode;
 
+    std::default_random_engine randomGen;
+    std::uniform_int_distribution<uint8_t> randByte;
+
     // Methods:
     void loadRom(char const* fileName);
+    void randomGen(std::chrono::system_clock::now().time_since_epoch().count());
 
 };
 

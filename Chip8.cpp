@@ -1,11 +1,18 @@
 #include "Chip8.h"
+#include "Fontset.cpp"
 #include <fstream>
 
 const unsigned int START_ADDRESS = 0x200;
+const unsigned int FONTSET_START_ADDRESS = 0x50;
 
 Chip8::Chip8() {
     // Initialize the Program Counter at the starting address in memory;
     programCounter = START_ADDRESS;
+
+    // Load fonts into memory.
+    for (unsigned int i = 0; i < FONTSET_SIZE; i++) {
+        memory[FONTSET_START_ADDRESS + i] = fontset[i];
+    }
 }
 
 void Chip8::loadRom(char const* fileName) {
